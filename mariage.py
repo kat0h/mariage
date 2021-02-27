@@ -1,3 +1,4 @@
+import sys
 from PIL import Image
 
 
@@ -40,15 +41,21 @@ def image2tenji(image: list):
 
 
 if __name__ == "__main__":
-    # Image PATH
-    im = Image.open("./mariage.jpg")
-    # Image size
-    im = im.resize((im.width // 1, im.height // 1)).convert('L')
-    limg = []
-    for i in range(im.height):
-        k = []
-        for j in range(im.width):
-            pixel = (not im.getpixel((j, i)) > 128) * 1
-            k.append(pixel)
-        limg.append(k)
-    print(image2tenji(limg))
+    for siz in range(10, 1000):
+        im = Image.open(sys.argv[1])
+        newsize = (
+                max(int(im.width / (siz / 10)), 1),
+                max(int(im.height / (siz / 10)), 1)
+                )
+        im = im.resize(newsize).convert('L')
+        limg = []
+        for i in range(im.height):
+            k = []
+            for j in range(im.width):
+                pixel = (not im.getpixel((j, i)) > 128) * 1
+                k.append(pixel)
+            limg.append(k)
+        result = image2tenji(limg)
+        if len(result) <= int(sys.argv[2]):
+            print(image2tenji(limg))
+            break

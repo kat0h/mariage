@@ -7,7 +7,7 @@
 
             usage
 
-   please rewrite mariage.py
+python3 {jpg} {max word count}
 
 
            example
