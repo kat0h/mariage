@@ -7,7 +7,7 @@
 
             usage
 
-python3 {jpg} {max word count}
+python3 mariage.py {jpg} {max word count}
 
 
            example
